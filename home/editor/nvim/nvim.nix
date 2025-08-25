@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, inputs, config, ... }:
 
 {
   imports = [
@@ -37,7 +37,165 @@
               })
             '';
           };
+
+          # overseer = {
+          #   package = pkgs.vimPlugins.overseer-nvim;
+          #   setup = ''
+          #     local overseer = require("overseer")
+          #     overseer.setup({
+          #       strategy = {
+          #         "toggleterm",
+          #         open_on_start = true,
+          #       },
+          #
+          #       component_aliases = { 
+          #         default = {
+          #           { "display_duration", detail_level = 2 },
+          #           "on_output_summarize",
+          #           "on_exit_set_status",
+          #           -- "on_complete_notify",
+          #           { "on_complete_dispose", require_view = { "SUCCESS", "FAILURE" } },
+          #         },
+          #       },
+          #     })
+          #
+          #     overseer.register_template({
+          #       name = "g++ build for competitive programming",
+          #       builder = function()
+          #         local file = vim.fn.expand("%:p")
+          #         local basename = vim.fn.expand("%:r")
+          #         return {
+          #           cmd = { "g++" },
+          #           args = { "-Wall", "-g", "-o", basename, file },
+          #         }
+          #       end,
+          #       condition = { filetype = { "cpp" } },
+          #       tags = { "build" },
+          #     })
+          #
+          #     overseer.register_template({
+          #       name = "C++ Run Executable",
+          #       strategy = { "toggleterm", use_shell = true, hidden = true, open_on_start = true, close_on_exit = false },
+          #       builder = function()
+          #         local basename = vim.fn.expand("%:r")
+          #         return {
+          #           cmd = { "./" .. basename },
+          #         }
+          #       end,
+          #       condition = { filetype = { "cpp" } },
+          #       tags = { "run" },
+          #     })
+          #
+          #     vim.keymap.set("n", "<leader>b", function()
+          #       overseer.run_template({ tags = { "build" } })
+          #     end, { desc = "Run build task" })
+          #     
+          #     vim.keymap.set("n", "<leader>r", function()
+          #       overseer.run_template({ tags = { "run" } })
+          #     end, { desc = "Run run task" })
+          #   '';
+          # };
         };
+
+        luaConfigRC.make = ''
+          local function term_exec(cmd)
+            require("toggleterm") -- in case of lazy loading
+            if vim.env.TMUX ~= nil then
+              local tmux_cmd = string.format('tmux send-keys -t 1 "%s" C-m', cmd)
+              vim.fn.system(tmux_cmd)
+            else
+              local Terminal = require("toggleterm.terminal").Terminal
+              local term = Terminal:new({
+                cmd = string.format("bash -c '%s; exec bash'", cmd),
+                go_back = 0,
+                direction = "horizontal",
+                close_on_exit = true,
+              })
+              term:toggle()
+            end
+          end
+
+          local function term_build(cmd)
+            if vim.env.TMUX ~= nil then
+              local tmux_cmd = string.format('tmux send-keys -t 1 "%s" C-m', cmd)
+              vim.fn.system(tmux_cmd)
+            else
+              vim.api.nvim_command('! ' .. cmd)
+            end
+          end
+
+          local build_functions = {
+            cpp = function()
+              local filename = vim.fn.expand('%:p')
+              local output_filename = vim.fn.expand('%:p:r')
+              local command = string.format(
+                '${pkgs.gcc}/bin/g++ -DLOCAL -include ${config.home.terminal.tools.precomp-bits.out}/stdc++.h -Wall -Wextra "%s" -o "%s"',
+                filename,
+                output_filename
+              )
+              term_build(command)
+            end,
+          }
+
+          local run_functions = {
+            cpp = function()
+              local cmd = vim.fn.expand('%:p:r')
+              term_exec(cmd)
+            end,
+          }
+
+          local function check_script(script)
+            local f = io.open(script, 'r')
+            if f == nil then
+              return false
+            end
+            io.close(f)
+            return true
+          end
+
+          local function run_from_script(script)
+            term_exec(script)
+          end
+
+          local function build_from_script(script)
+            term_exec(script)
+          end
+
+          local function run_program()
+            local shell_script = vim.fn.getcwd() .. '/run.sh'
+            if check_script(shell_script) then
+              run_from_script(shell_script)
+              return
+            end
+
+            local filetype = vim.bo.filetype
+
+            if run_functions[filetype] then
+              run_functions[filetype]()
+            else
+              print("No run function defined for filetype: " .. filetype)
+            end
+          end
+
+          local function build_program()
+            local shell_script = vim.fn.getcwd() .. '/build.sh'
+            if check_script(shell_script) then
+              build_from_script(shell_script)
+              return
+            end
+
+            local filetype = vim.bo.filetype
+
+            if build_functions[filetype] then
+              build_functions[filetype]()
+            else
+              print("No build function defined for filetype: " .. filetype)
+            end
+          end
+
+          vim.keymap.set('n', '<leader>b', build_program, { desc = 'Make | Build Program', silent = true })
+          vim.keymap.set('n', '<leader>r', run_program, { desc = 'Make | Run Program', silent = true })
+        '';
 
         preventJunkFiles = true;
 

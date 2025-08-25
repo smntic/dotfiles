@@ -1,6 +1,10 @@
 { pkgs, ... }:
 
 {
+  imports = [
+    ./precomp_bits.nix
+  ];
+
   home.packages = [
     # System information
     pkgs.btop
