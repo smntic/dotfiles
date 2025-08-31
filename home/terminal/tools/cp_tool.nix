@@ -6,7 +6,7 @@
       inputs.cp-tool.packages.${pkgs.system}.cptool-py
     ];
     shellAliases = {
-      cpt = "source cpt -t=${./.}/templates/";
+      cpt = "cpt -tf=${./.}/templates/";
     };
   };
 }
