@@ -19,7 +19,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    cp-tool.url = "github:smntic/cp-tool";
+    cp-tool.url = "path:/home/simon/git/cp-tool/"; # "github:smntic/cp-tool";
   };
 
   outputs = { nixpkgs, home-manager, ... }@inputs: {
