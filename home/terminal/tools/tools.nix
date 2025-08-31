@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./cp_tool.nix
     ./precomp_bits.nix
   ];
 

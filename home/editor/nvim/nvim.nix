@@ -142,6 +142,10 @@
               local cmd = vim.fn.expand('%:p:r')
               term_exec(cmd)
             end,
+            python = function()
+              local cmd = 'python ' .. vim.fn.expand('%:p')
+              term_exec(cmd)
+            end,
           }
 
           local function check_script(script)

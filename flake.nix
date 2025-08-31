@@ -18,9 +18,11 @@
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    cp-tool.url = "github:smntic/cp-tool";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs: {
+  outputs = { nixpkgs, home-manager, ... }@inputs: {
     nixosConfigurations.x13 = nixpkgs.lib.nixosSystem rec {
       system = "x86_64-linux";
       specialArgs = {
@@ -29,25 +31,25 @@
       modules = [
         # Flake modules
         inputs.stylix.nixosModules.stylix
-	home-manager.nixosModules.home-manager 
+        home-manager.nixosModules.home-manager 
 
-	# System configuration modules
+        # System configuration modules
         ./config/configuration.nix
-	./config/hardware-configuration.nix
+        ./config/hardware-configuration.nix
 
         # Home manager configuration
         {
           home-manager = {
             useGlobalPkgs = true;
-	    useUserPackages = true;
-	    users.simon = {
+            useUserPackages = true;
+            users.simon = {
               imports = [
                 ./home/home.nix
               ];
             };
-	    extraSpecialArgs = specialArgs;
-	  };
-	}
+            extraSpecialArgs = specialArgs;
+          };
+        }
       ];
     };
   };
