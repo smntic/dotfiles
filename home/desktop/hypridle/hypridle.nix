@@ -12,16 +12,16 @@
       };
 
       listener = [
-        # Turn screen off after 5 minutes
+        # Turn screen off after 10 minutes
         {
-          timeout = 300;
+          timeout = 600;
           on-timeout = "hyprctl dispatch dpms off";
           on-resume = "hyprctl dispatch dpms on";
         }
 
-        # Lock session after 10 minutes
+        # Lock session after 15 minutes
         {
-          timeout = 600;
+          timeout = 900;
           on-timeout = "loginctl lock-session";
         }
       ];
