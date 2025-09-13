@@ -31,6 +31,7 @@
 
     # Debugging tools
     pkgs.gdb
+    pkgs.cgdb
     pkgs.valgrind
 
     # Compression tools
