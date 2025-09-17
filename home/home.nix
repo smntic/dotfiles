@@ -8,6 +8,7 @@
     ./editor/editor.nix
     ./git/git.nix
     ./terminal/terminal.nix
+    ./tex/tex.nix
     ./theme/theme.nix
   ];
 

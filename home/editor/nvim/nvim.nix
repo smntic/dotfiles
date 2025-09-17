@@ -38,6 +38,18 @@
             '';
           };
 
+          vimtex = {
+            package = pkgs.vimPlugins.vimtex;
+            setup = ''
+              vim.g.vimtex_view_method = "zathura"
+              vim.g.vimtex_compiler_latexmk = {
+                out_dir = 'build'
+              }
+              vim.keymap.set('n', '<leader>tc', '<cmd>VimtexCompile<CR>')
+              vim.keymap.set('n', '<leader>tv', '<cmd>VimtexView<CR>')
+            '';
+          };
+
           # overseer = {
           #   package = pkgs.vimPlugins.overseer-nvim;
           #   setup = ''

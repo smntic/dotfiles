@@ -46,6 +46,7 @@
 
     # Viewers
     pkgs.sxiv
+    pkgs.zathura
 
     # Nix tools
     pkgs.appimage-run
