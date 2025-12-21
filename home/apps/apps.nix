@@ -12,5 +12,6 @@
     pkgs.kicad
     pkgs.gimp
     pkgs.kdePackages.kdenlive
+    pkgs.libreoffice
   ];
 }
