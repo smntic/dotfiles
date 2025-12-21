@@ -7,6 +7,7 @@
 
   fonts.packages = [
     pkgs.noto-fonts
+    pkgs.noto-fonts-cjk-sans
     pkgs.nerd-fonts.symbols-only
   ];
 
