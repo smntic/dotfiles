@@ -278,7 +278,7 @@
           nix.enable = true;
           python = {
             enable = true;
-            lsp.server = "pyright";
+            lsp.servers = ["pyright"];
           };
           tailwind.enable = true;
           ts.enable = true;

@@ -1,8 +1,10 @@
-{ inputs, ... }:
+{ ... }:
 
 {
   stylix = {
     enable = true;
-    targets.firefox.profileNames = [ "default" ];
+    targets.firefox = {
+      profileNames = [ "default" ];
+    };
   };
 }

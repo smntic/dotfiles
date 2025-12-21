@@ -3,7 +3,9 @@
 {
   programs.git = {
     enable = true;
-    userName = "Simon Ashton";
-    userEmail = "simon@smntic.dev";
+    settings.user = {
+      name = "Simon Ashton";
+      email = "simon@smntic.dev";
+    };
   };
 }

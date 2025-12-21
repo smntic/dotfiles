@@ -10,5 +10,7 @@
     pkgs.octaveFull
     pkgs.audacity
     pkgs.kicad
+    pkgs.gimp
+    pkgs.kdePackages.kdenlive
   ];
 }
