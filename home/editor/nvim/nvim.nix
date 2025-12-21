@@ -1,9 +1,26 @@
 { pkgs, inputs, config, ... }:
 
 {
+  # clangd doesn't have standard library support anymore?
+  # why was this fine before?
+  # ehh---fuck it this works.
+  home.file.".config/clangd/config.yaml".text =
+    ''
+      CompileFlags:
+        Add:
+          - -std=gnu++20
+          - --gcc-toolchain=${pkgs.gcc.cc}
+          - -isystem
+          - ${pkgs.gcc.cc}/include/c++/${pkgs.gcc.version}
+          - -isystem
+          - ${pkgs.glibc.dev}/include
+    '';
+
   imports = [
     inputs.nvf.homeManagerModules.default
   ];
+
+  home.packages = [ pkgs.clang-tools ];
 
   programs.nvf = {
     enable = true;
