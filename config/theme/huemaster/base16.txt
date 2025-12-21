@@ -1,0 +1,16 @@
+base00 = "#0f1423";
+base01 = "#171f34";
+base02 = "#1f2946";
+base03 = "#4f67af";
+base04 = "#7285bf";
+base05 = "#b8c2df";
+base06 = "#edeff7";
+base07 = "#ffffff";
+base08 = "#e4b1b1";
+base09 = "#dbb896";
+base0A = "#2c3983";
+base0B = "#96db96";
+base0C = "#9696db";
+base0D = "#f9a29e";
+base0E = "#e4b1b1";
+base0F = "#c5abb5";
