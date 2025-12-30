@@ -28,7 +28,9 @@
 
     settings = {
       vim = {
-        startPlugins = [ pkgs.vimPlugins.playground ];
+        startPlugins = with pkgs.vimPlugins; [
+          playground
+        ];
 
         extraPlugins = {
           marks = {
@@ -64,6 +66,13 @@
               }
               vim.keymap.set('n', '<leader>tc', '<cmd>VimtexCompile<CR>')
               vim.keymap.set('n', '<leader>tv', '<cmd>VimtexView<CR>')
+            '';
+          };
+
+          markdown-preview = {
+            package = pkgs.vimPlugins.markdown-preview-nvim;
+            setup = ''
+              vim.keymap.set('n', '<leader>M', '<cmd>MarkdownPreview<CR>')
             '';
           };
 
@@ -247,7 +256,6 @@
           expandtab = true;
           shiftwidth = 4;
           tabstop = 4;
-          smartindent = true;
 
           wrap = false;
         };
