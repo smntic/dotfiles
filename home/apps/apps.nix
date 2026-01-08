@@ -13,5 +13,6 @@
     pkgs.gimp
     pkgs.kdePackages.kdenlive
     pkgs.libreoffice
+    pkgs.xournalpp
   ];
 }
