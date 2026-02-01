@@ -28,10 +28,6 @@
 
     settings = {
       vim = {
-        startPlugins = with pkgs.vimPlugins; [
-          playground
-        ];
-
         extraPlugins = {
           marks = {
             package = pkgs.vimPlugins.marks-nvim;
