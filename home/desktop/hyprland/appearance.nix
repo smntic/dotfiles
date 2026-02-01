@@ -24,7 +24,7 @@
     ];
 
     layerrule = [
-      "blur,rofi"
+      "blur on, match:namespace rofi"
     ];
   };
 }

@@ -17,7 +17,7 @@
   };
 
   home.shellAliases = {
-    hypr = "uwsm start hyprland-uwsm.desktop";
+    hypr = "uwsm start start-hyprland";
     hyprexit = "pkill -9 gammastep & uwsm stop";
   };
 }

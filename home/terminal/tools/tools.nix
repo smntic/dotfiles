@@ -20,6 +20,8 @@
 
     # Audio tools
     pkgs.bluetui
+    pkgs.pulseaudioFull
+    pkgs.alsa-utils
 
     # Build tools
     pkgs.bear

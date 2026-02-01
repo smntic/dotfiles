@@ -14,5 +14,6 @@
     # pkgs.kdePackages.kdenlive
     pkgs.libreoffice
     pkgs.xournalpp
+    pkgs.pavucontrol
   ];
 }
