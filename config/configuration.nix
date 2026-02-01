@@ -13,6 +13,7 @@
     ./tools/tools.nix
     ./users/users.nix
     ./virtualization/virtualization.nix
+    ./overlays.nix
   ];
 
   services.logind.settings.Login = {

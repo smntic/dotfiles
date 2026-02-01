@@ -11,7 +11,7 @@
     pkgs.audacity
     pkgs.kicad
     pkgs.gimp
-    pkgs.kdePackages.kdenlive
+    # pkgs.kdePackages.kdenlive
     pkgs.libreoffice
     pkgs.xournalpp
   ];
