@@ -52,6 +52,32 @@ let
       hyprctl dispatch focuswindow floating
     fi
   '';
+
+  earbudVolumeScript = pkgs.pkgs.writeShellScript "earbud_volume" ''
+    STEP=5
+    RATIO=1.4583
+    SINK=$(pactl get-default-sink)
+    DIR=''${1:?Missing direction}
+
+    # Get current right channel volume as percentage
+    RIGHT=$(pactl get-sink-volume "$SINK" | grep -oP '\d+(?=%)' | tail -1)
+
+    if [ "$DIR" = "up" ]; then
+      RIGHT=$((RIGHT + STEP))
+    elif [ "$DIR" = "down" ]; then
+      RIGHT=$((RIGHT - STEP))
+    else
+      exit 1
+    fi
+
+    LEFT=$(awk "BEGIN{printf \"%d\", $RIGHT * $RATIO}")
+
+    # Clamp left to 100% max if needed
+    [ "$LEFT" -gt 150 ] && LEFT=150
+    [ "$RIGHT" -lt 0 ] && RIGHT=0
+
+    pactl set-sink-volume "$SINK" "''${LEFT}%" "''${RIGHT}%"
+  '';
 in
   {
     home.packages = [
@@ -72,6 +98,10 @@ in
         ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ -l 1"
         ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
         ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+
+        # audio control for stupid unbalanced $12 earbuds from walmart
+        "SHIFT, XF86AudioRaiseVolume, exec, ${earbudVolumeScript} up"
+        "SHIFT, XF86AudioLowerVolume, exec, ${earbudVolumeScript} down"
 
         # Move window
         "$mod SHIFT, h, exec, ${moveWindowScript} 100 l move"

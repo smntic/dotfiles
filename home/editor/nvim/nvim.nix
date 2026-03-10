@@ -289,6 +289,7 @@
           enableExtraDiagnostics = true;
 
           assembly.enable = true;
+          astro.enable = true;
           bash.enable = true;
           clang.enable = true;
           css.enable = true;
@@ -591,7 +592,7 @@
           # Set tab to 2 spaces, instead of the default 4
           {
             event = [ "FileType" ];
-            pattern = [ "c" "javascript" "typescript" "html" "css" "nix" "typescriptreact" "javascriptreact" ];
+            pattern = [ "c" "javascript" "typescript" "html" "css" "nix" "typescriptreact" "javascriptreact" "astro" ];
             desc = "Set tab to 2 spaces for certain filetypes";
             command = "setlocal tabstop=2 shiftwidth=2 expandtab";
           }
