@@ -20,7 +20,7 @@
     inputs.nvf.homeManagerModules.default
   ];
 
-  home.packages = [ pkgs.clang-tools ];
+  home.packages = [ pkgs.clang-tools pkgs.ripgrep ];
 
   programs.nvf = {
     enable = true;
@@ -426,6 +426,19 @@
 
         notes = {
           todo-comments.enable = true;
+          obsidian = {
+            enable = true;
+            setupOpts = {
+              legacy_commands = false;
+              ui.enable = false;
+              workspaces = [
+                {
+                  name = "notes";
+                  path = "/home/simon/git/notes/";
+                }
+              ];
+            };
+          };
         };
 
         terminal = {
