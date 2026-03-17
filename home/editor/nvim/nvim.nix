@@ -254,6 +254,8 @@
           tabstop = 4;
 
           wrap = false;
+
+          foldenable = false;
         };
 
         luaConfigRC.shortmess = ''
@@ -434,7 +436,7 @@
               workspaces = [
                 {
                   name = "notes";
-                  path = "/home/simon/git/notes/";
+                  path = "/home/simon/git/notes/research/dp";
                 }
               ];
             };
