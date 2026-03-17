@@ -436,7 +436,7 @@
               workspaces = [
                 {
                   name = "notes";
-                  path = "/home/simon/git/notes/research/dp";
+                  path = "/home/simon/git/notes";
                 }
               ];
             };
