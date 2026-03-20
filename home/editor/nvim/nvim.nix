@@ -435,8 +435,8 @@
               ui.enable = false;
               workspaces = [
                 {
-                  name = "notes";
-                  path = "/home/simon/git/notes";
+                  name = "dp-notes";
+                  path = "/home/simon/git/dp-notes";
                 }
               ];
             };
