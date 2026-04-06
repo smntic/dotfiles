@@ -81,9 +81,9 @@ let
 in
   {
     home.packages = [
-      pkgs.jq
-      pkgs.hyprshot
       pkgs.brightnessctl
+      pkgs.hyprshot
+      pkgs.jq
     ];
 
     wayland.windowManager.hyprland.settings = {
@@ -183,6 +183,9 @@ in
 
         # Take screenshot
         "$mod, Print, exec, hyprshot --clipboard-only -m region"
+
+        # Wayscriber (screen annotation tool)
+        "$mod, A, exec, wayscriber --active"
       ];
     };
   }

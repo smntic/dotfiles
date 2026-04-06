@@ -8,5 +8,6 @@
     ./hyprlock/hyprlock.nix
     ./rofi/rofi.nix
     ./waybar/waybar.nix
+    ./wayscriber/wayscriber.nix
   ];
 }
