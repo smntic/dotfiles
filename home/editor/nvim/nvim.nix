@@ -613,6 +613,17 @@
           }
         ];
 
+        luaConfigRC.extraAutocmds = ''
+          vim.api.nvim_create_autocmd("BufReadPre", {
+            pattern = vim.env.HOME .. "/notes/unlocked/*",
+            callback = function()
+              vim.opt_local.swapfile = false
+              vim.opt_local.undofile = false
+              vim.opt_local.shadafile = "NONE"
+            end
+          })
+        '';
+
         luaConfigRC.lsp_BS = ''
           vim.diagnostic.config({
             virtual_text = {
