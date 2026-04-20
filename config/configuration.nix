@@ -8,12 +8,13 @@
     ./desktop/desktop.nix
     ./locale/locale.nix
     ./network/network.nix
+    ./overlays.nix
     ./printing/printing.nix
+    ./sync/sync.nix
     ./theme/theme.nix
     ./tools/tools.nix
     ./users/users.nix
     ./virtualization/virtualization.nix
-    ./overlays.nix
   ];
 
   services.logind.settings.Login = {
