@@ -20,7 +20,7 @@
     inputs.nvf.homeManagerModules.default
   ];
 
-  home.packages = [ pkgs.clang-tools pkgs.ripgrep ];
+  home.packages = [ pkgs.clang-tools pkgs.ripgrep pkgs.go ];
 
   programs.nvf = {
     enable = true;
@@ -169,6 +169,14 @@
               )
               term_build(command)
             end,
+            go = function()
+              local filename = vim.fn.expand('%:p')
+              local command = string.format(
+                '${pkgs.go}/bin/go build "%s"',
+                filename
+              )
+              term_build(command)
+            end,
           }
 
           local run_functions = {
@@ -178,6 +186,10 @@
             end,
             python = function()
               local cmd = 'python ' .. vim.fn.expand('%:p')
+              term_exec(cmd)
+            end,
+            go = function()
+              local cmd = vim.fn.expand('%:p:r')
               term_exec(cmd)
             end,
           }
@@ -295,6 +307,7 @@
           bash.enable = true;
           clang.enable = true;
           css.enable = true;
+          go.enable = true;
           haskell.enable = true;
           html.enable = true;
           lua.enable = true;
