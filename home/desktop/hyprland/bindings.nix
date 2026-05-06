@@ -186,6 +186,12 @@ in
 
         # Wayscriber (screen annotation tool)
         "$mod, A, exec, wayscriber --active"
+
+        # fcitx
+        "$mod, U, exec, fcitx5-remote -s keyboard-us"
+        "$mod, I, exec, fcitx5-remote -s pinyin"
+        "$mod, O, exec, fcitx5-remote -s mozc"
+        "$mod, P, exec, fcitx5-remote -s hangul"
       ];
     };
   }

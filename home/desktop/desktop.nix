@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./fcitx/fcitx.nix
     ./gammastep/gammastep.nix
     ./hypridle/hypridle.nix
     ./hyprland/hyprland.nix

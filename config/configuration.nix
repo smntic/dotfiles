@@ -6,6 +6,7 @@
     ./audio/audio.nix
     ./boot/boot.nix
     ./desktop/desktop.nix
+    ./input/input.nix
     ./locale/locale.nix
     ./network/network.nix
     ./overlays.nix
