@@ -5,5 +5,8 @@
     ./kdeconnect.nix
   ];
 
-  environment.systemPackages = [ pkgs.scrcpy ];
+  environment.systemPackages = with pkgs; [
+    scrcpy
+    android-tools
+  ];
 }

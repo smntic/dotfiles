@@ -40,5 +40,15 @@
     ".config/fcitx5/conf/classicui.conf".text = ''
       Theme=Nord-Dark
     '';
+
+    ".config/fcitx5/conf/clipboard.conf" = {
+      text = ''
+        [Addon]
+        Enable=False
+        [TriggerKey]
+        [PastePrimary]
+      '';
+      force = true;
+    };
   };
 }

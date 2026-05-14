@@ -4,7 +4,6 @@ let
   # Runs only when Hyprland is opened initially
   setupScript = pkgs.pkgs.writeShellScript "setup" ''
     uwsm app -- ${pkgs.waybar}/bin/waybar &
-    uwsm app -- ${pkgs.wl-clipboard}/bin/wl-paste --watch ${pkgs.cliphist}/bin/cliphist store &
     uwsm app -- ${pkgs.wl-clip-persist}/bin/wl-clip-persist --clipboard regular &
     fcitx5-remote -r
   '';
