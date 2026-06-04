@@ -192,6 +192,9 @@ in
         "$mod, I, exec, fcitx5-remote -s pinyin"
         "$mod, O, exec, fcitx5-remote -s mozc"
         "$mod, P, exec, fcitx5-remote -s hangul"
+
+        # laptop sleep
+        "$mod, End, exec, systemctl suspend"
       ];
     };
   }

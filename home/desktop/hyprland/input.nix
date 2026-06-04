@@ -35,10 +35,10 @@
         sensitivity = -0.5;
       }
 
-      {
-        name = "wacom-one-by-wacom-s-pen";
-        output = "HDMI-A-1";
-      }
+      # {
+      #   name = "wacom-one-by-wacom-s-pen";
+      #   output = "HDMI-A-1";
+      # }
     ];
   };
 }
