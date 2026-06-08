@@ -6,18 +6,19 @@
   ];
 
   home.packages = [
-    pkgs.krita
-    pkgs.vlc
-    pkgs.obs-studio
-    pkgs.blender
-    pkgs.godot_4-mono
-    pkgs.octaveFull
     pkgs.audacity
-    pkgs.kicad
+    pkgs.blender
     pkgs.gimp
+    pkgs.godot_4-mono
     pkgs.kdePackages.kdenlive
+    pkgs.kicad
+    pkgs.krita
     pkgs.libreoffice
-    pkgs.xournalpp
+    pkgs.obs-studio
+    pkgs.octaveFull
     pkgs.pavucontrol
+    pkgs.vlc
+    pkgs.wireshark
+    pkgs.xournalpp
   ];
 }
