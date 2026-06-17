@@ -20,5 +20,6 @@
     pkgs.vlc
     pkgs.wireshark
     pkgs.xournalpp
+    pkgs.anki
   ];
 }
